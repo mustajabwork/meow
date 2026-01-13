@@ -53,7 +53,7 @@ const DoorEntry = ({ onEnter }: DoorEntryProps) => {
   };
 
   const handleEnter = () => {
-    if (name.toLowerCase() === "mustajab" && permission === "sjntib") {
+    if (name.toLowerCase() === "admin" && permission === "admin") {
       setIsOpening(true);
       toast({
         title: "▸ ACCESS GRANTED",
