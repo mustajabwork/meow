@@ -1,0 +1,317 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BRUTALIST MANSION - Heavy, Dense, Game-like */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Bebas+Neue&display=swap');
+
+@layer base {
+  :root {
+    /* Heavy concrete colors */
+    --background: 0 0% 8%;
+    --foreground: 45 10% 90%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 45 10% 90%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 45 10% 90%;
+
+    /* Rust/industrial orange primary */
+    --primary: 25 90% 50%;
+    --primary-foreground: 0 0% 5%;
+
+    /* Concrete secondary */
+    --secondary: 40 5% 20%;
+    --secondary-foreground: 45 10% 90%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 40 5% 55%;
+
+    /* Warning/attention accent */
+    --accent: 50 95% 55%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 75% 45%;
+    --destructive-foreground: 45 10% 90%;
+
+    --border: 40 5% 25%;
+    --input: 0 0% 14%;
+    --ring: 25 90% 50%;
+
+    --radius: 0px;
+
+    /* Brutalist tokens */
+    --concrete: 40 3% 35%;
+    --rust: 20 70% 35%;
+    --steel: 220 5% 45%;
+    --shadow-deep: 0 0% 3%;
+    --glow-harsh: 25 100% 55%;
+    --warning: 45 100% 50%;
+    --moss: 120 20% 25%;
+    --blood: 0 60% 35%;
+    
+    /* Heavy shadows */
+    --shadow-brutal: 8px 8px 0px hsl(0 0% 0%);
+    --shadow-inset: inset 4px 4px 0px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 30px 5px hsl(25 90% 50% / 0.4);
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 45 10% 90%;
+    --card: 0 0% 10%;
+    --card-foreground: 45 10% 90%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 45 10% 90%;
+    --primary: 25 90% 50%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 40 5% 18%;
+    --secondary-foreground: 45 10% 90%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 5% 50%;
+    --accent: 50 95% 55%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 75% 45%;
+    --destructive-foreground: 45 10% 90%;
+    --border: 40 5% 22%;
+    --input: 0 0% 12%;
+    --ring: 25 90% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Mono', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .font-display {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.1em;
+  }
+}
+
+@layer components {
+  /* Brutalist heavy door */
+  .brutal-door {
+    background: linear-gradient(180deg, hsl(20 15% 18%), hsl(15 10% 10%));
+    box-shadow: 
+      inset 0 0 40px hsl(0 0% 0% / 0.7),
+      var(--shadow-brutal),
+      0 0 60px 10px hsl(25 90% 50% / 0.15);
+    border: 6px solid hsl(0 0% 0%);
+  }
+
+  /* Steel plate panels */
+  .steel-plate {
+    background: linear-gradient(135deg, hsl(220 5% 30%), hsl(220 5% 20%));
+    box-shadow: 
+      inset 2px 2px 0px hsl(220 5% 45%),
+      inset -2px -2px 0px hsl(0 0% 10%),
+      var(--shadow-brutal);
+    border: 3px solid hsl(0 0% 0%);
+  }
+
+  /* Concrete texture */
+  .concrete {
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+      linear-gradient(180deg, hsl(40 3% 25%), hsl(40 3% 18%));
+  }
+
+  /* Heavy room card */
+  .room-card {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-brutal);
+    border: 4px solid hsl(0 0% 0%);
+  }
+
+  .room-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px hsl(0 0% 0%), var(--shadow-glow);
+  }
+
+  /* Brutalist input */
+  .brutal-input {
+    @apply bg-input;
+    box-shadow: var(--shadow-inset);
+    border: 3px solid hsl(0 0% 0%);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .brutal-input:focus {
+    box-shadow: var(--shadow-inset), 0 0 0 3px hsl(var(--primary));
+  }
+
+  /* Door knocker effect */
+  .door-knocker {
+    background: linear-gradient(145deg, hsl(35 40% 50%), hsl(30 35% 30%));
+    box-shadow: 
+      3px 3px 0px hsl(0 0% 0%),
+      inset 1px 1px 0px hsl(45 50% 65%);
+    border: 2px solid hsl(0 0% 0%);
+  }
+
+  /* Mansion area indicators */
+  .area-hallway { border-left: 6px solid hsl(220 30% 50%); }
+  .area-library { border-left: 6px solid hsl(30 60% 40%); }
+  .area-kitchen { border-left: 6px solid hsl(25 80% 50%); }
+  .area-garden { border-left: 6px solid hsl(120 40% 35%); }
+  .area-basement { border-left: 6px solid hsl(270 30% 35%); }
+  .area-attic { border-left: 6px solid hsl(40 50% 50%); }
+  .area-gallery { border-left: 6px solid hsl(0 60% 45%); }
+  .area-study { border-left: 6px solid hsl(200 40% 40%); }
+  .area-vault { border-left: 6px solid hsl(45 80% 50%); }
+  .area-room { border-left: 6px solid hsl(var(--primary)); }
+
+  /* Knock animation */
+  @keyframes knock {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10% { transform: translateX(-8px) rotate(-2deg); }
+    20% { transform: translateX(6px) rotate(1deg); }
+    30% { transform: translateX(-4px) rotate(-1deg); }
+    40% { transform: translateX(2px) rotate(0.5deg); }
+    50% { transform: translateX(0); }
+  }
+
+  .knocking {
+    animation: knock 0.6s ease-in-out;
+  }
+
+  /* Glitch text effect */
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+  }
+
+  .glitch-hover:hover {
+    animation: glitch 0.3s ease-in-out infinite;
+  }
+
+  /* Scan line effect */
+  .scan-lines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0 0% 0% / 0.1) 2px,
+      hsl(0 0% 0% / 0.1) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Heavy button */
+  .brutal-button {
+    @apply relative px-6 py-4 font-bold uppercase tracking-wider;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 6px 6px 0px hsl(0 0% 0%);
+    border: 4px solid hsl(0 0% 0%);
+    transition: all 0.1s ease;
+  }
+
+  .brutal-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px hsl(0 0% 0%);
+  }
+
+  .brutal-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px hsl(0 0% 0%);
+  }
+
+  /* Nested indicator */
+  .nested-line {
+    position: relative;
+  }
+
+  .nested-line::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: hsl(var(--primary) / 0.5);
+  }
+
+  /* Warning tape */
+  .warning-tape {
+    background: repeating-linear-gradient(
+      45deg,
+      hsl(45 100% 50%),
+      hsl(45 100% 50%) 10px,
+      hsl(0 0% 0%) 10px,
+      hsl(0 0% 0%) 20px
+    );
+  }
+}
+
+@layer utilities {
+  @keyframes flicker-harsh {
+    0%, 100% { opacity: 1; }
+    5% { opacity: 0.9; }
+    10% { opacity: 1; }
+    15% { opacity: 0.85; }
+    50% { opacity: 1; }
+    55% { opacity: 0.95; }
+    80% { opacity: 1; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px 5px hsl(25 90% 50% / 0.3); }
+    50% { box-shadow: 0 0 50px 15px hsl(25 90% 50% / 0.5); }
+  }
+
+  @keyframes shake-heavy {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+  }
+
+  @keyframes static-noise {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+  }
+
+  .animate-flicker {
+    animation: flicker-harsh 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake-heavy 0.5s ease-in-out;
+  }
+
+  /* Grain overlay */
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: overlay;
+  }
+}
